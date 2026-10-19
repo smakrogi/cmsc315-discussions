@@ -24,8 +24,23 @@ from copy import copy, deepcopy
 #
 # Replace the pass statement with your implementation.
 
-class ParentClass:
-    pass
+class AnimalClass:
+    """
+    Parent class representing an animal
+    """
+    name = "Lion"
+
+    def __init__(self, age: int, weight: float):
+        if age <= 0 or weight <= 0:
+            raise ValueError("Problem in name, age, or weight")
+        self._age = age
+        self._weight = weight
+
+    def display_info(self):
+        print(f"Name: {self.name}, Age: {self._age}, Weight: {self._weight}")
+
+
+
 
 
 # TODO 2:
@@ -40,8 +55,33 @@ class ParentClass:
 #
 # Replace the pass statement with your implementation.
 
-class ChildClass(ParentClass):
-    pass
+class Fish(AnimalClass):
+    """
+    Child class for fish
+    """
+    name = "Shark"
+
+    def __init__(self, age: int, weight: float, number_of_fins):
+        super().__init__(age, weight)
+        if number_of_fins <= 0:
+            raise ValueError("Problem in number_of_fins")
+        self._number_of_fins = number_of_fins
+        self._habitat = None
+        self._food = []
+
+    def set_habitat(self, habitat:str):
+        self._habitat = habitat
+
+    def set_food(self, food:str):
+        self._food.append(food)
+
+    def get_food(self):
+        return self._food
+
+    def display_info(self):
+        print(f"Name: {self.name}, Age: {self._age}, Weight: {self._weight}")
+        print(f"A {self.name} has {self._number_of_fins} fins, lives in the {self._habitat}, and eats {self._food}")
+
 
 
 # TODO 3:
@@ -57,7 +97,20 @@ class ChildClass(ParentClass):
 
 def demonstrate_namespaces():
     print("\n=== Namespace Demonstration ===")
-    print("TODO: Implement namespace demonstration")
+
+    # Shark
+    fish_1 = Fish(3, 350, 6)
+    print(f"First fish name: {Fish.name}")
+
+    # Dolphin
+    fish_2 = Fish(7, 250, 5)
+    fish_2.name = "Dolphin"
+    print(f"Second fish name: {Fish.name}")
+    fish_2.display_info()
+
+    # Display namespaces
+    print(f"First fish namespace: {fish_1.__dict__}")
+    print(f"Second fish namespace: {fish_2.__dict__}")
 
 
 # TODO 4:
@@ -73,7 +126,22 @@ def demonstrate_namespaces():
 
 def demonstrate_copying():
     print("\n=== Copy Demonstration ===")
-    print("TODO: Implement shallow copy and deep copy demonstration")
+
+    # Shark food
+    dolphin_food = ["Fish", "Crustaceans"]
+
+    # Shallow copy copies the pointer to dolphin food.
+    shallow_food_copy = dolphin_food
+    print(f"Shallow food copy: {shallow_food_copy}")
+    dolphin_food.append("Squid")
+    print(f"Shallow food copy points to source variable: {shallow_food_copy}")
+
+    # Deep copy creates a distinct copy of dolphin_food
+    deep_food_copy = deepcopy(dolphin_food)
+    print(f"Deep food copy: {deep_food_copy}")
+    dolphin_food.append("Crabs")
+    print(f"Deep food copy is a separate variable: {deep_food_copy}")
+
 
 
 # TODO 5:
@@ -89,9 +157,14 @@ def demonstrate_copying():
 def main():
     print("=== Unit 1 OOP Assignment ===")
 
-    print("\nTODO: Create and test your parent object")
+    print("\n*** Parent object ***")
+    animal_1 = AnimalClass(8, 355.5)
+    animal_1.display_info()
 
-    print("\nTODO: Create and test your child object")
+    print("\n*** Child object ***")
+    animal_2 = Fish(4, 401.3, 4)
+    animal_2.set_habitat("Ocean")
+    animal_2.display_info()
 
     demonstrate_namespaces()
     demonstrate_copying()
