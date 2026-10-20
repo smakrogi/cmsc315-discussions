@@ -83,8 +83,8 @@ In this way the origin and target variables are changed independently. I practic
 I also practiced the use of github as a version control system for writing and managing software.
 
 2. What challenges did you encounter, and how did you overcome them?
-I think it was important to understand the instructions and to develop a solutions that answers the main questions.
-Design of the classes and may take longer time than their implementation because the main questions are about OO design. 
+I think it was important to understand the instructions and to develop a solution that addresses the main questions.
+Design of the classes may take longer time than their implementation because the main questions are mostly about OO design. 
 After implementation, I tested the code using different value sets.
 
 3. Compare OOP to procedural programming.

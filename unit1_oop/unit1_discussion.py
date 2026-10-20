@@ -69,10 +69,10 @@ class Fish(AnimalClass):
         self._habitat = None
         self._food = []
 
-    def set_habitat(self, habitat:str):
+    def add_habitat(self, habitat:str):
         self._habitat = habitat
 
-    def set_food(self, food:str):
+    def add_food(self, food:str):
         self._food.append(food)
 
     def get_food(self):
@@ -127,20 +127,24 @@ def demonstrate_namespaces():
 def demonstrate_copying():
     print("\n=== Copy Demonstration ===")
 
-    # Shark food
-    dolphin_food = ["Fish", "Crustaceans"]
+    # Dolphin
+    fish_3 = Fish(7, 250, 5)
+    fish_3.name = "Dolphin"
+    fish_3.add_food("Fish")
+    fish_3.add_food("Crustaceans")
+    fish_3.display_info()
 
     # Shallow copy copies the pointer to dolphin food.
-    shallow_food_copy = dolphin_food
-    print(f"Shallow food copy: {shallow_food_copy}")
-    dolphin_food.append("Squid")
-    print(f"Shallow food copy points to source variable: {shallow_food_copy}")
-
+    shallow_fish_copy = copy(fish_3)
     # Deep copy creates a distinct copy of dolphin_food
-    deep_food_copy = deepcopy(dolphin_food)
-    print(f"Deep food copy: {deep_food_copy}")
-    dolphin_food.append("Crabs")
-    print(f"Deep food copy is a separate variable: {deep_food_copy}")
+    deep_fish_copy = deepcopy(fish_3)
+
+    fish_3.add_food("Squid")
+    print(f"Shallow food copy points to source variable")
+    shallow_fish_copy.display_info()
+
+    print(f"Deep food copy is a separate variable")
+    deep_fish_copy.display_info()
 
 
 
@@ -163,7 +167,7 @@ def main():
 
     print("\n*** Child object ***")
     animal_2 = Fish(4, 401.3, 4)
-    animal_2.set_habitat("Ocean")
+    animal_2.add_habitat("Ocean")
     animal_2.display_info()
 
     demonstrate_namespaces()
