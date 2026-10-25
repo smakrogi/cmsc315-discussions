@@ -23,8 +23,8 @@ class Stack:
     def push(self, value):
         # TODO (Student): Add value to the stack.
         # Add a short comment explaining why this operation supports LIFO behavior.
-        # The item is appended to the right. Pop will return the first item on the left.
-        # This implements stack functionality.
+        # The item is appended to the right. Pop will return the last item on the right.
+        # This implements stack LIFO functionality.
         self._my_stack.append(value)
         print(f"Pushed item. Stack contents: {self._my_stack}")
 
@@ -59,7 +59,7 @@ class Stack:
             print("Stack is empty")
             return True
         else:
-            print("Stack is empty")
+            print("Stack is not empty")
             return False
 
 class Queue:
@@ -72,8 +72,7 @@ class Queue:
     def enqueue(self, value):
         # TODO (Student): Add value to the back of the queue.
         # Add a short comment explaining why this operation supports FIFO behavior.
-        # Add item to the end of the deque. This works because we can push and pop
-        # items at both ends of the queue.
+        # Add item to the end of the deque.
         self._my_queue.append(value)
         print(f"Enqueued item. Queue contents: {self._my_queue}")
 
@@ -81,6 +80,7 @@ class Queue:
     def dequeue(self):
         # TODO (Student): Remove and return the value from the front of the queue.
         # Explain or improve empty-queue handling.
+        # Pop item from the left of the queue to implement FIFO operation.
         # Handle empty queue by returning None.
         try:
             value = self._my_queue.popleft()
