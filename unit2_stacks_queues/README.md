@@ -25,20 +25,45 @@ Complete all TODO sections:
 5. Create and test edge cases.
 6. Create a real-world scenario.
 
-## Discussion Board Reflection
 
-After completing the programming assignment, add this reflection to your initial discussion post in LEO.
+# Unit 2 Discussion: Stacks and Queues (Python)
 
-Your reflection should be approximately 150–200 words and address the following questions:
+## Overview
 
-1. What concepts or skills did you learn while completing this assignment?
-I reviewed how a Python List implements stack LIFO functionality. By applying push and pop operations, I observed how the order of insertion determines the order of removal.
-I also reviewed how a Python deque container to implement queue FIFO functionality. Deque is a generalization of stacks and queues. It is effectively a double-ended queue so it can be used as a queue and as a stack.
-A deque supports memory efficient appends and pops with approximately the same O(1) performance in either direction.
-2. What challenges did you encounter, and how did you overcome them?
-While the Stack and Queue were already implemented in python, it's always good to double-check that the solution developed here, addresses the requirements in the guidelines.
-3. Explain the differences between stacks and queues as this relates to real-world applications.
-I think that stacks and queues find numerous applications in computer systems and applications. Stacks and queues are used in computer organization to access memory for different tasks. 
-In applications, stacks are useful for implementing undo lists and function call hierarchies because the most recent item is accessed first.
-Queues can be used to buffer operations in user interfaces and in data transmision in networks because items are accessed and processed sequentially. 
-This information significantly helps to choose the right type of data structure based on the application's requirements. 
+This assignment explored two fundamental data structures: stacks and queues. 
+I implemented and tested their core operations in Python to demonstrate how they manage items in different orders.
+
+## Implementation Summary
+
+I implemented the stack using a Python list and completed the `push()`, `pop()`, `peek()`, and `is_empty()` methods.
+
+- **Push:** Added an item to the end of the list.
+- **Pop:** Removed and returned the last item, demonstrating LIFO behavior.
+- **Peek:** Returned the last item without removing it.
+- **Is empty:** Checked whether the stack contained any items.
+
+I implemented the queue using Python's `collections.deque` and completed the `enqueue()`, `dequeue()`, `front()`, and `is_empty()` methods.
+
+- **Enqueue:** Added an item to the back of the queue.
+- **Dequeue:** Removed and returned the item at the front, demonstrating FIFO behavior.
+- **Front:** Returned the first item without removing it.
+- **Is empty:** Checked whether the queue contained any items.
+
+The removal and inspection methods handled empty data structures by catching `IndexError` and returning `None`. 
+The program demonstrated stack operations using fruit names and queue operations using animal names. 
+It also included attempts to remove or inspect items when the structures were empty.
+
+## Design Approach and Real-World Applications
+
+I used a Python list for the stack because appending and removing the last item support the LIFO principle. 
+This approach is suitable for applications such as undo functionality, where the most recent action is reversed first.
+
+I used `collections.deque` for the queue because it supports efficient operations at both ends. 
+Adding items at the back and removing them from the front supports FIFO processing. 
+A real-world example is a task-processing system in which requests are generally handled in arrival order.
+
+## Testing
+
+The program demonstrated multiple stack and queue operations, including adding and removing items, inspecting the next item, and attempting operations on empty structures. 
+The single-item examples were intended to examine behavior when the last item was removed. 
+Explicitly calling `is_empty()` after those removals provides an additional verification of these edge cases.
