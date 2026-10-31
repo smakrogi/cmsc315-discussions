@@ -22,7 +22,16 @@ def insert_at(lst, index, value):
     - Use comments to explain how insertion performance may vary depending on
       where the insertion occurs.
     """
-    pass
+
+    # Insert value at the specified index.
+    # Shift successive nodes to the next position.
+    # Insertion will take O(len(lst)-index) operations.
+    # For example, insertion at the end of the list will take 1 shift and have
+    # O(1) time complexity.
+    lst.insert(index, value)
+
+    # Return the list
+    return lst
 
 
 def delete_at(lst, index):
@@ -36,7 +45,15 @@ def delete_at(lst, index):
     - Return None if the index is invalid.
     - Add comments explaining why index validation and safe deletion are important.
     """
-    pass
+
+    # Check for edge cases and return None if index is invalid,
+    # or the item of the list at index is None.
+    if len(lst) <= index or lst[index] is None or 0 > index:
+        # Return none for the edge cases.
+        return None
+    else:
+        # Otherwise return the deleted item and the list after deletion.
+        return lst.pop(index)
 
 
 def search_value(lst, value):
@@ -49,7 +66,19 @@ def search_value(lst, value):
     - Return -1 if the value is not found.
     - Add comments explaining why this is a linear search and why it scans sequentially.
     """
-    pass
+
+    # Use a try/except block to handle the ValueError and return -1.
+    # This is a linear search because it checks each item of the least against the value.
+    # It scans the list sequentially so that it returns the index of first occurrence of value
+    # to save computational time.
+    try:
+        # Return the index of first value occurrence.
+        return lst.index(value)
+    except ValueError:
+        # Return -1, if the value was not found.
+        return -1
+
+
 
 
 def main():
@@ -72,6 +101,17 @@ def main():
     print("\n=== INSERTION TESTS ===")
     print("TODO: Create a list and demonstrate insertions.")
 
+    # Create a list with four items.
+    my_list = ["red", "yellow", "green", "blue"]
+    # Print the list.
+    print(f"Original list: {my_list}")
+
+    # Demonstrate insertion into the list at multiple positions
+    # using a `for` loop.
+    for idx in (0, 2, 4):
+        print(f"Insertion at index {idx}: {insert_at(my_list, idx, "orange")}")
+
+
     # ===============================
     # TODO (Student): DELETION TESTS
     # ===============================
@@ -87,8 +127,18 @@ def main():
 
     print("\n=== DELETION TESTS ===")
     print("TODO: Demonstrate deletions from multiple positions.")
+    print("Now let's demonstrate deletions.")
 
-    # ===============================
+    # Take the previous list.
+    print(f"Original list: {my_list}")
+    # Use a `for` loop to delete items from the list iteratively
+    # and show the output of deletions.
+    for idx in (0, 2, 4, 5):
+        print(f"Deletion at index {idx}: {delete_at(my_list, idx)}")
+        print(f"Current list: {my_list}")
+
+
+# ===============================
     # TODO (Student): SEARCH TESTS
     # ===============================
     #
@@ -100,6 +150,22 @@ def main():
 
     print("\n=== SEARCH TESTS ===")
     print("TODO: Demonstrate searching for values.")
+
+    # Search for a value that exists and a value that does not exist
+    # using a `for` loop.
+    # Define queries.
+    queries = ["red", "yellow"]
+    # Iterate over the queries and perform search.
+    for query in queries:
+        # Show query and list.
+        print(f"Searching for {query} in {my_list}... ")
+        # Search.
+        idx = search_value(my_list, query)
+        # Display messages according to success or failure of search.
+        if idx == -1:
+            print(f"{query} not found!")
+        else:
+             print(f"{query} found at index {idx}!")
 
     # ===============================
     # TODO (Student): EDGE CASES
@@ -117,7 +183,32 @@ def main():
     print("\n=== EDGE CASES ===")
     print("TODO: Demonstrate at least two edge cases.")
 
+    # First edge case: insert an item into an empty list at index 2.
+    print(f"\nDemonstrate insertion into an empty list...")
+    my_list_2 = []
+    value = "red"
+    index = 2
+    # Display value, list, index, and insertion output.
+    # It seems it appends the value regardless of index
+    # because the list was originally empty.
+    print(f"Inserting {value} into list {my_list_2} at index {index}...")
+    print(f"Current list: {insert_at(my_list_2, index, value)}")
 
+    # Second edge case: delete items from list with a single item.
+    print(f"\nDemonstrate deletions from multiple positions...")
+    # Use iterator over multiple indices.
+    for index in (0, 0):
+        # Delete at index.
+        print(f"\nDeletion at index {index}...")
+        output = delete_at(my_list_2, index)
+        # Check for failure to delete.
+        if output is not None:
+            # If no failure, show the deleted item and current list.
+            print(f"Retrieved item value: {output}.")
+            print(f"Current list: {my_list_2}")
+        else:
+            # Otherwise, show there is no item at requested index.
+            print(f"No item found at index {index}!")
 
 if __name__ == "__main__":
     main()
