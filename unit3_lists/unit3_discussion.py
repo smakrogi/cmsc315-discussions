@@ -46,14 +46,11 @@ def delete_at(lst, index):
     - Add comments explaining why index validation and safe deletion are important.
     """
 
-    # Check for edge cases and return None if index is invalid,
-    # or the item of the list at index is None.
-    if len(lst) <= index or lst[index] is None or 0 > index:
-        # Return none for the edge cases.
-        return None
-    else:
-        # Otherwise return the deleted item and the list after deletion.
+    # Check for edge cases and return None if index is invalid.
+    try:
         return lst.pop(index)
+    except IndexError:
+        return None
 
 
 def search_value(lst, value):
@@ -165,7 +162,7 @@ def main():
         if idx == -1:
             print(f"{query} not found!")
         else:
-             print(f"{query} found at index {idx}!")
+            print(f"{query} found at index {idx}!")
 
     # ===============================
     # TODO (Student): EDGE CASES
