@@ -65,7 +65,7 @@ def search_value(lst, value):
     """
 
     # Use a try/except block to handle the ValueError and return -1.
-    # This is a linear search because it checks each item of the least against the value.
+    # This is a linear search because it checks each item of the list against the value.
     # It scans the list sequentially so that it returns the index of first occurrence of value
     # to save computational time.
     try:

@@ -51,23 +51,3 @@ tests at multiple positions, successful and failed search tests.
 Regarding edge cases, we tested insertion of an item into an empty list and iterative 
 deletions of items from a list and attempt to delete from an empty list.
 The code handles index exceptions during deletion by returning `None`.
-
-## Discussion Board Reflection
-
-After completing the programming assignment, add this reflection to your initial discussion post in LEO.
-
-Your reflection should be approximately 150–200 words and address the following questions:
-
-1. What concepts or skills did you learn while completing this assignment?
-In this assignment, I learned how to perform linked list operations using Python's `List` data type.
-I used `insert()`, `pop()`, and `index()` methods to implement insertion, deletion, and search operations.
-I developed tests to observe how the list changed after each operation.
-
-2. What challenges did you encounter, and how did you overcome them?
-Particular attention needs to be paid to how the implementation handles edge cases.
-
-3. How do list operations impact performance in real-world applications?
-Time and space complexity needs to be considered especially for large scale applications.
-Python lists are implemented as dynamic arrays, not as linked lists.
-Therefore, accessing items by index is time efficient, but item insertion requires shifting 
-and potential memory re-allocation, which may increase space and time complexity.
