@@ -26,7 +26,7 @@ def insert_at(lst, index, value):
     # Insert value at the specified index.
     # Shift successive nodes to the next position.
     # Insertion will take O(len(lst)-index) operations.
-    # For example, insertion at the end of the list will take 1 shift and have
+    # For example, insertion at tbe second-to-last index of the list will take 1 shift and have
     # O(1) time complexity.
     lst.insert(index, value)
 
@@ -48,8 +48,10 @@ def delete_at(lst, index):
 
     # Check for edge cases and return None if index is invalid.
     try:
+        # Remove and return the value at the given index.
         return lst.pop(index)
     except IndexError:
+        # Return None if the index is invalid.
         return None
 
 

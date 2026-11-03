@@ -30,9 +30,9 @@ I implemented and tested their core operations in Python to demonstrate item ins
 
 I used a Python list and completed the `insert_at()`, `delete_at()`, and `search_value()` methods.
 
-- **insert_at:** Added an item to the end of the list.
-- **delete_at:** Removed and returned the last item, demonstrating LIFO behavior.
-- **search_value:** Returned the last item without removing it.
+- **insert_at:** Added an item to the indexed position in the list.
+- **delete_at:** Removed and returned the item from the indexed position.
+- **search_value:** Returned the index of first value occurrence.
 
 The deletion method handles invalid index values by catching `IndexError` and returning `None`.
 The search method handles not-found patterns by catching `ValueError` and returning -1.
