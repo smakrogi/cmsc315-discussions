@@ -17,14 +17,20 @@ class Node:
         # TODO (Student):
         # Store the node's value and initialize references
         # to the left and right child nodes.
-        pass
+
+        # Initializing instance variables.
+        self.value = value
+        self.left = None
+        self.right = None
 
 
 class BST:
     def __init__(self):
         # TODO (Student):
         # Initialize an empty Binary Search Tree.
-        pass
+
+        # Set root to None to create an empty tree.
+        self.root = None
 
     def insert(self, value):
         """
@@ -37,7 +43,21 @@ class BST:
           whether a value is smaller or larger than the
           current node.
         """
-        pass
+
+        # If BST is empty, create and assign a node with the
+        # given value to the tree's root node and return.
+        if self.root is None:
+            self.root = Node(value)
+            return
+
+        # If the value does not exist in the tree,
+        # call recursive insertion.
+        if not self.search(value):
+            self._insert_recursive(self.root, value)
+        else:
+            # Otherwise abort insertion.
+            print(f"Value {value} already in the tree. Aborting insertion.")
+
 
     def _insert_recursive(self, node, value):
         """
@@ -50,7 +70,35 @@ class BST:
         - Insert larger values into the right subtree.
         - Return the updated node reference.
         """
-        pass
+
+        current_node = node
+        # While node has existing value.
+        while not current_node.value is None:
+            # If insertion value greater than existing value,
+            if current_node.value > value:
+                # Check the left child.
+                if current_node.left is None:
+                    # If the child is empty, insert new node with value
+                    # and return.
+                    current_node.left = Node(value)
+                    return current_node
+                else:
+                    # Otherwise continue searching the left child.
+                    current_node = current_node.left
+            else:
+                # If insertion value smaller than existing value,
+                # Check the right child.
+                if current_node.right is None:
+                    # If the child is empty, insert new node with value
+                    # and return.
+                    current_node.right = Node(value)
+                    return current_node
+                else:
+                    # Otherwise continue searching the right child.
+                    current_node = current_node.right
+
+        return current_node
+
 
     def search(self, value):
         """
@@ -63,14 +111,41 @@ class BST:
         - Add comments explaining why BST search is often
           more efficient than linear search.
         """
-        pass
+
+        # If the tree is empty, end search and return False.
+        if self.root is None:
+            return False
+
+        # Call recursive search starting from the root
+        # of the tree and return False if it returns None.
+        if self._search_recursive(self.root, value) is None:
+            return False
+
+        # Search found the value. Return true.
+        return True
+
 
     def _search_recursive(self, node, value):
         """
         TODO (Student):
         Implement recursive BST search.
         """
-        pass
+        # Use a while loop to search recursively in the BST.
+        current_node = node
+        while not current_node is None:
+            # We found the queried value and return the node.
+            if current_node.value == value:
+                return current_node
+            # Node value is smaller than the query.
+            # Move search to the right child.
+            elif current_node.value < value:
+                current_node = current_node.right
+            else:
+                # Node value is greater than the query.
+                # Move search to the left child.
+                current_node = current_node.left
+
+        return None
 
     def inorder(self):
         """
@@ -78,7 +153,11 @@ class BST:
         Return a list containing the values from an
         in-order traversal.
         """
-        pass
+        # Call recursive inorder function.
+        values = self._inorder_recursive(self.root, [])
+        # Return the list of values that were found in the appropriate order.
+        return values
+
 
     def _inorder_recursive(self, node, values):
         """
@@ -92,8 +171,19 @@ class BST:
         - Add comments explaining why this traversal
           produces sorted output in a BST.
         """
-        pass
 
+        # Return if the search node is None.
+        if node is None:
+            return
+
+        # Go to the left branch and call self.
+        self._inorder_recursive(node.left, values)
+        # Append start node to the list.
+        values.append(node.value)
+        # Go to the right branch and call self.
+        self._inorder_recursive(node.right, values)
+        # Return values.
+        return values
 
 def main():
     print("=== UNIT 4: BINARY SEARCH TREES ===")
@@ -113,6 +203,16 @@ def main():
     print("\n=== TREE CONSTRUCTION ===")
     print("TODO: Create a BST and insert multiple values.")
 
+    # Create an empty BST.
+    my_bst = BST()
+    # Set values to be inserted.
+    values = [10, 20, 3, 15, 7, 22, 1]
+    print(f"Constructing a tree by entering the following values from first to last:\n {values}")
+    # Insert values in the tree in the given order.
+    for value in values:
+        my_bst.insert(value)
+
+
     # ===============================
     # TODO (Student): IN-ORDER TRAVERSAL
     # ===============================
@@ -126,6 +226,11 @@ def main():
     print("\n=== IN-ORDER TRAVERSAL ===")
     print("TODO: Display and explain traversal results.")
 
+    # Traverse the tree in-order.
+    print("In-order traversal of my BST")
+    # Display the traversal output.
+    print(my_bst.inorder())
+
     # ===============================
     # TODO (Student): SEARCH TESTS
     # ===============================
@@ -137,6 +242,17 @@ def main():
 
     print("\n=== SEARCH TESTS ===")
     print("TODO: Demonstrate BST searching.")
+
+    # Setting two queries present in the tree and another two that
+    # are not contained in the tree.
+    queries = [15, 20, 100, 200]
+    # Loop over the queries.
+    for query in queries:
+        # Search for these values and print outcome.
+        if my_bst.search(query):
+            print(f"{query} is in my BST")
+        else:
+            print(f"{query} is not in my BST")
 
     # ===============================
     # TODO (Student): EDGE CASES
@@ -154,6 +270,33 @@ def main():
 
     print("\n=== EDGE CASES ===")
     print("TODO: Demonstrate and explain an edge case.")
+
+    # First edge case:
+    # Create an empty tree.
+    empty_bst = BST()
+    query = 20
+    # Search for a value inside the empty tree and
+    # print results.
+    print(f"Serching for {query} in an empty tree...")
+    result = empty_bst.search(query)
+    print(f"Query output: {result}")
+
+    # Second edge case:
+    # Create tree and add one value.
+    value = 50
+    print(f"Creating a BST with one node with value {value}...")
+    bst_single_node = BST()
+    bst_single_node.insert(value)
+    # Traverse the tree in-order and display output.
+    print("In-order traversal of this BST")
+    print(bst_single_node.inorder())
+
+    # Third edge case:
+    # Try to insert the same value into the tree and see
+    # how it is handled.
+    # The code recognizes value is repeated and aborts insertion.
+    print(f"Re-inserting {value} in the same BST...")
+    bst_single_node.insert(value)
 
 
 
