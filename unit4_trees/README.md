@@ -21,12 +21,28 @@ This assignment introduces Binary Search Trees (BSTs) and recursive tree operati
 5. Demonstrate edge cases.
 6. Create a real-world BST example.
 
-## Discussion Board Reflection
+## Design and Implementation
 
-After completing the programming assignment, add this reflection to your initial discussion post in LEO.
+The implementation consists of two classes:
 
-Your reflection should be approximately 150–200 words and address the following questions:
+- **`Node`**: Stores a value and references to left and right children.
+- **`BST`**: Manages the tree from a root node and provides insertion, search, and in-order traversal.
 
-1. What concepts or skills did you learn while completing this assignment?
-2. What challenges did you encounter, and how did you overcome them?
-3. Explain BST behavior and compare to how ordering works to create efficiency as compared to other data structures.
+### Insertion
+
+Values smaller than the current node are placed in the left subtree; larger values go to the right. The method checks for duplicates before inserting to prevent redundant nodes.
+
+### Search
+
+Each comparison eliminates roughly half the remaining nodes, achieving O(log n) average-case time complexity compared to O(n) for linear search in arrays or linked lists.
+
+### In-Order Traversal
+
+Visiting nodes in left-node-right order produces sorted output because all left-subtree values are smaller and all right-subtree values are larger than the current node.
+
+### Edge Cases
+
+- Searching an empty tree returns `False`.
+- A single-node tree traverses correctly.
+- Duplicate insertions are detected and rejected.
+

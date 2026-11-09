@@ -277,7 +277,7 @@ def main():
     query = 20
     # Search for a value inside the empty tree and
     # print results.
-    print(f"Serching for {query} in an empty tree...")
+    print(f"Searching for {query} in an empty tree...")
     result = empty_bst.search(query)
     print(f"Query output: {result}")
 
