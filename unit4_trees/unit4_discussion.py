@@ -74,7 +74,7 @@ class BST:
         current_node = node
         # While node has existing value.
         while not current_node.value is None:
-            # If insertion value greater than existing value,
+            # If insertion value smaller than current value,
             if current_node.value > value:
                 # Check the left child.
                 if current_node.left is None:
@@ -86,7 +86,7 @@ class BST:
                     # Otherwise continue searching the left child.
                     current_node = current_node.left
             else:
-                # If insertion value smaller than existing value,
+                # If insertion value greater than current value,
                 # Check the right child.
                 if current_node.right is None:
                     # If the child is empty, insert new node with value
