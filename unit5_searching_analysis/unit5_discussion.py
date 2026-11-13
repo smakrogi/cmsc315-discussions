@@ -26,7 +26,17 @@ def linear_search(lst, target):
     - Add comments explaining why linear search
       has O(n) time complexity.
     """
-    pass
+
+    # Loop through lst.
+    for idx in range(0,len(lst)):
+        # Check if the current list item
+        # equals the target.
+        if lst[idx] == target:
+            # If so, return the index.
+            return idx
+
+    # Target not found, returning -1.
+    return -1
 
 
 def binary_search(lst, target):
@@ -42,7 +52,20 @@ def binary_search(lst, target):
     - Add comments explaining how each iteration
       reduces the search space.
     """
-    pass
+
+    low_index = int(0)
+    high_index = int(len(lst) - 1)
+    while high_index >= low_index:
+        mid = (low_index + high_index) // 2
+        if lst[mid] > target:
+            high_index = mid - 1
+        elif lst[mid] < target:
+            low_index = mid + 1
+        else:
+            return mid
+    # Target not found, returning -1.
+    return -1
+
 
 
 def main():
@@ -62,6 +85,21 @@ def main():
 
     print("\n=== SMALL DATASET TEST ===")
     print("TODO: Create a small dataset and test both searches.")
+    data_1 = list(range(3, 20, 2))
+    print(f"First dataset:\n {data_1}")
+    target_value = 21
+
+    print(f"Linear search:")
+    if linear_search(data_1, target_value) == 0:
+        print(f"Value {target_value} found in the data set.")
+    else:
+        print(f"Value {target_value} not found in the data set.")
+
+    print(f"Binary search:")
+    if binary_search(data_1, target_value) == 0:
+        print(f"Value {target_value} found in the data set.")
+    else:
+        print(f"Value {target_value} not found in the data set.")
 
     # ===============================
     # TODO (Student): LARGE DATASET
