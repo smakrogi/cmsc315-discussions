@@ -20,12 +20,19 @@ This assignment compares linear search and binary search.
 5. Create a real-world search scenario.
 
 
-## Discussion Board Reflection
+## Design and Implementation
+The implementation consists of the following functions:
 
-After completing the programming assignment, add this reflection to your initial discussion post in LEO.
+- **`linear_search`**: Performs linear search over a list of items. Returns the item's index or -1 if it was not found.
+- **`binary_search`**: Performs binary search over a list of items. Returns the item's index or -1 if it was not found.
+- **`search_and_display`**: Handles the search calls, displays input, output, and elapsed time for comparisons.
+- **`run_linear_and_binary_searches`**: Runs a linear and a binary search for the same dataset and target_values.
 
-Your reflection should be approximately 150–200 words and address the following questions:
+### Edge Cases
+The main functions shows how the code handles the following edge cases.
+- Empty list
+- Single-element list
+- Value not present
+- Value at the first position
+- Value at the last position
 
-1. What concepts or skills did you learn while completing this assignment?
-2. What challenges did you encounter, and how did you overcome them?
-3. Explain when to use linear versus binary search, including tradeoffs in real-world scenarios.
