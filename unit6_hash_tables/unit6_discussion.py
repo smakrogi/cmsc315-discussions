@@ -15,7 +15,27 @@ clearly communicates what your program is doing at each step.
 
 ----------------------------------------------------
 """
+from typing import Protocol
 
+def lookup_key(gradebook, key):
+    result = gradebook.get(key)
+
+    if result is not None:
+        print(f"{key}'s grade is {result}")
+    else:
+        print(f"{key} not found in gradebook.")
+
+    return result
+
+def remove_key(gradebook, key_to_remove):
+
+    print(f"Removing {key_to_remove}'s grade")
+
+    if lookup_key(gradebook, key_to_remove) is not None:
+        removed_grade = gradebook.pop(key_to_remove)
+        print(f"Removed entry: {key_to_remove}:{removed_grade}")
+
+    return gradebook
 
 def main():
     print("=== UNIT 6: DICTIONARIES AS HASH TABLES ===")
@@ -47,6 +67,17 @@ def main():
     print("\n=== LOOKUP OPERATIONS ===")
     print("TODO: Demonstrate successful key lookups.")
 
+    gradebook = {"George":85, "Anna":92, "Chris":78, "Thomas":68}
+
+    lookup_keys = ["Chris", "Tom"]
+
+    for key in lookup_keys:
+        result = gradebook.get(key)
+        if result is not None:
+            print(f"{key}'s grade is {result}")
+        else:
+            print(f"{key} not found in gradebook.")
+
     # ===============================
     # TODO (Student): UPDATE OPERATIONS
     # ===============================
@@ -60,6 +91,10 @@ def main():
     print("\n=== UPDATE OPERATIONS ===")
     print("TODO: Demonstrate updating an existing key.")
 
+    print(gradebook.items())
+    gradebook.update({"Chris":98})
+    print(gradebook.items())
+
     # ===============================
     # TODO (Student): DELETE OPERATIONS
     # ===============================
@@ -71,6 +106,19 @@ def main():
 
     print("\n=== DELETE OPERATIONS ===")
     print("TODO: Demonstrate deleting a key-value pair.")
+
+    print(f" Current gradebook: {gradebook.items()}")
+    key_to_remove = "Anna"
+    print(f"Removing {key_to_remove}"'s grade')
+    removed_grade = gradebook.pop(key_to_remove)
+
+    if removed_grade is None:
+        print(f"{key_to_remove}"'s grade not found')
+    else:
+        print(f"Removed entry: {key_to_remove}:{removed_grade}")
+
+    print(f"Current gradebook after removal: {gradebook.items()}")
+
 
     # ===============================
     # TODO (Student): EDGE CASES
@@ -89,7 +137,23 @@ def main():
     print("\n=== EDGE CASES ===")
     print("TODO: Demonstrate and explain edge cases.")
 
+    # Lookup keys (one is missing)
+    lookup_keys = ["Chris", "Tom", "Jimmy"]
+    print(f"Current gradebook: {gradebook.items()}")
+    for key in lookup_keys:
+        lookup_key(gradebook, key)
 
+    # Delete a missing key safely.
+    print(f"Current gradebook: {gradebook.items()}")
+    key_to_remove = "Noah"
+    remove_key(gradebook, key_to_remove)
+
+    # Update a missing key.
+    print(f"Current gradebook: {gradebook.items()}")
+    item_to_update = {"Jake":58}
+    print(f"Update gradebook with {item_to_update}")
+    gradebook.update(item_to_update)
+    print(f"Updated gradebook: {gradebook.items()}")
 
 if __name__ == "__main__":
     main()
