@@ -52,8 +52,6 @@ def remove_key(gradebook, key_to_remove):
         # Display removed entry.
         print(f"Removed entry: {key_to_remove}:{removed_grade}")
 
-    return gradebook
-
 def main():
     print("=== UNIT 6: DICTIONARIES AS HASH TABLES ===")
 
@@ -96,7 +94,7 @@ def main():
     # Iteratively lookup keys using helper function lookup_key().
     for key in lookup_keys:
         print(f"Looking up {key}...")
-        result = lookup_key(gradebook, key)
+        lookup_key(gradebook, key)
     # Show gradebook.
     print(f"Gradebook after lookup: {gradebook.items()}")
 
