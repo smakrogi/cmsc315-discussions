@@ -38,7 +38,7 @@ def lookup_key(gradebook, key):
 
 def remove_key(gradebook, key_to_remove):
     """ Helper function that removes a key and
-        handles the edge case of not-existing keys.
+        handles the edge case of non-existent keys.
     """
 
     # Display key to remove.
