@@ -18,21 +18,38 @@ clearly communicates what your program is doing at each step.
 from typing import Protocol
 
 def lookup_key(gradebook, key):
+    """ Helper function that looks up a key and
+        displays the corresponding value, or displays a not-found
+        message.
+    """
+
+    # Look up key using built-in get method of the dictionary.
+    # Use the built-in get() method of a dictionary to look up the item.
     result = gradebook.get(key)
 
+    # Display value or a message that key was not found.
     if result is not None:
         print(f"{key}'s grade is {result}")
     else:
         print(f"{key} not found in gradebook.")
 
+    # Return the value or None if key was not found.
     return result
 
 def remove_key(gradebook, key_to_remove):
+    """ Helper function that removes a key and
+        handles the edge case of not-existing keys.
+    """
 
+    # Display key to remove.
     print(f"Removing {key_to_remove}'s grade")
 
+    # Look up the key and remove only if the key is
+    # in the table.
     if lookup_key(gradebook, key_to_remove) is not None:
+        # Use the built-in pop() method of a dictionary to remove the item.
         removed_grade = gradebook.pop(key_to_remove)
+        # Display removed entry.
         print(f"Removed entry: {key_to_remove}:{removed_grade}")
 
     return gradebook
@@ -67,16 +84,21 @@ def main():
     print("\n=== LOOKUP OPERATIONS ===")
     print("TODO: Demonstrate successful key lookups.")
 
+    # Create gradebook dictionary.
     gradebook = {"George":85, "Anna":92, "Chris":78, "Thomas":68}
 
+    # Set lookup keys.
     lookup_keys = ["Chris", "Tom"]
 
+    # Show current gradebook.
+    print(f"Current gradebook: {gradebook.items()}")
+
+    # Iteratively lookup keys using helper function lookup_key().
     for key in lookup_keys:
-        result = gradebook.get(key)
-        if result is not None:
-            print(f"{key}'s grade is {result}")
-        else:
-            print(f"{key} not found in gradebook.")
+        print(f"Looking up {key}...")
+        result = lookup_key(gradebook, key)
+    # Show gradebook.
+    print(f"Gradebook after lookup: {gradebook.items()}")
 
     # ===============================
     # TODO (Student): UPDATE OPERATIONS
@@ -91,9 +113,17 @@ def main():
     print("\n=== UPDATE OPERATIONS ===")
     print("TODO: Demonstrate updating an existing key.")
 
-    print(gradebook.items())
-    gradebook.update({"Chris":98})
-    print(gradebook.items())
+    # Show current gradebook.
+    print(f"Current gradebook: {gradebook.items()}")
+
+    # Set update item and display it.
+    update_item = {"Chris":98}
+    print(f"Updating the gradebook with item {update_item}")
+
+    # Call built-in update() dictionary member and display updated
+    # gradebook.
+    gradebook.update(update_item)
+    print(f"Updated gradebook: {gradebook.items()}")
 
     # ===============================
     # TODO (Student): DELETE OPERATIONS
@@ -107,16 +137,13 @@ def main():
     print("\n=== DELETE OPERATIONS ===")
     print("TODO: Demonstrate deleting a key-value pair.")
 
+    # Show current gradebook.
     print(f" Current gradebook: {gradebook.items()}")
+    # Show key to remove.
     key_to_remove = "Anna"
-    print(f"Removing {key_to_remove}"'s grade')
-    removed_grade = gradebook.pop(key_to_remove)
-
-    if removed_grade is None:
-        print(f"{key_to_remove}"'s grade not found')
-    else:
-        print(f"Removed entry: {key_to_remove}:{removed_grade}")
-
+    # Call helper function remove_key() to remove the key.
+    remove_key(gradebook, key_to_remove)
+    # Show gradebook after item removal.
     print(f"Current gradebook after removal: {gradebook.items()}")
 
 
@@ -137,22 +164,41 @@ def main():
     print("\n=== EDGE CASES ===")
     print("TODO: Demonstrate and explain edge cases.")
 
-    # Lookup keys (one is missing)
+    # Set lookup keys (one is missing)
+    print("\nLook up present and missing keys.")
     lookup_keys = ["Chris", "Tom", "Jimmy"]
+    # Show gradebook.
     print(f"Current gradebook: {gradebook.items()}")
+    # Iteratively look the keys up by calling the helper function
+    # lookup_key().
     for key in lookup_keys:
         lookup_key(gradebook, key)
+    # Show gradebook.
+    print(f"Gradebook after lookup: {gradebook.items()}")
 
     # Delete a missing key safely.
+    print("\nDelete a missing key safely.")
+    # Show gradebook.
     print(f"Current gradebook: {gradebook.items()}")
+    # Show key to remove. The key is not in the gradebook.
     key_to_remove = "Noah"
+    # Call helper remove_key() to remove the key and
+    # see how it is handled.
     remove_key(gradebook, key_to_remove)
+    # Show gradebook.
+    print(f"Current gradebook: {gradebook.items()}")
 
     # Update a missing key.
+    print("\nUpdate a missing key.")
+    # Show gradebook.
     print(f"Current gradebook: {gradebook.items()}")
+    # Set item to update. Item's key is not in the gradebook.
     item_to_update = {"Jake":58}
+    # Show item to update.
     print(f"Update gradebook with {item_to_update}")
+    # Call built-in dictionary update() member.
     gradebook.update(item_to_update)
+    # Show updated gradebook.
     print(f"Updated gradebook: {gradebook.items()}")
 
 if __name__ == "__main__":

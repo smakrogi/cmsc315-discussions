@@ -21,12 +21,15 @@ This assignment uses Python dictionaries to demonstrate hash table behavior.
 5. Test edge cases.
 6. Create a real-world scenario.
 
-## Discussion Board Reflection
+## Design and Implementation
+The implementation consists of the following functions:
 
-After completing the programming assignment, add this reflection to your initial discussion post in LEO.
-
-Your reflection should be approximately 150–200 words and address the following questions:
-
-1. What concepts or skills did you learn while completing this assignment?
-2. What challenges did you encounter, and how did you overcome them?
-3. Explain how hash tables behave, what collisions are, and how hash tables can improve efficiency.
+- **`lookup_key`**: Helper function that looks up a key and displays the corresponding value, or displays a not-found message.
+- **`remove_key`**: Helper function that removes a key and handles the edge case of not-existing keys.
+- **`main`**: Creates and populates a dictionary, demonstrates lookup, update, and delete operations, and tests edge cases. Real world scenario is a course gradebook.
+ 
+### Edge Cases
+The main functions shows how the code handles the following edge cases.
+- Look up present and missing keys
+- Delete a missing key safely
+- Update a missing key
