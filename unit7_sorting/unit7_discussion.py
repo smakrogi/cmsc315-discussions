@@ -45,8 +45,19 @@ def merge_sort(lst):
     - Add meaningful comments.
 
     """
-    pass
-
+    """Sort the elements of Python list lst using the merge-sort algorithm."""
+    n = len(lst)
+    if n < 2:
+        return              # list is already sorted
+    # divide
+    mid = n // 2
+    lst1 = lst[0:mid]           # copy of first half
+    lst2 = lst[mid:n]           # copy of second half
+    # conquer (with recursion)
+    merge_sort(lst1)          # sort copy of first half
+    merge_sort(lst2)          # sort copy of second half
+    # merge results
+    merge(lst1, lst2)
 
 def merge(left, right):
     """
@@ -60,7 +71,15 @@ def merge(left, right):
     - Return the merged sorted list.
     - Add meaningful comments.
     """
-    pass
+    """Merge two sorted Python lists left and right into properly sized list lst."""
+    i = j = 0
+    while i + j < len(S):
+        if j == len(right) or (i < len(left) and left[i] < right[j]):
+            lst[i+j] = left[i]      # copy ith element of S1 as next item of S
+            i += 1
+        else:
+            lst[i+j] = right[j]      # copy jth element of S2 as next item of S
+            j += 1
 
 
 def main():
